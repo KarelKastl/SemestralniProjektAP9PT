@@ -37,13 +37,16 @@ Datum 4. 11. 2026. Simulátor iPhone 12 mini, iOS 27.2, Xcode 27.2.
 ## Odolnost
 `RobustnessUITests` R1–R7 a B1–B3 prošly, přehled je v `docs/AGENT-REVIEW.md`.
 
+## Ověřeno člověkem na iPhonu (4. 11. 2026)
+- Ikona aplikace: ✅ červenobílá vlajka.
+- Zkratka v aplikaci Zkratky: ✅ otevře denní výzvu.
+- Režim Letadlo: ✅ hra ukládá data i bez sítě.
+
 ## Čeká na ruční ověření
-1. Režim Letadlo na iPhonu: po dohrání hry zapněte režim Letadlo, restartujte aplikaci, odehrajte hru a zkontrolujte vlajky.
 2. VoiceOver: projděte hru a ověřte, že vlajka zní „Vlajka, hádej zemi“.
 3. Velké písmo na iPhonu: Nastavení → Zpřístupnění → Velikost textu.
 4. Mapa: v simulátoru se při screenshotech nenačetly dlaždice, ověřte detail země se sítí. Bez sítě mapa dlaždice nemá, zbytek aplikace funguje.
 5. Haptika: odezva po odpovědi je cítit jen na zařízení.
-6. Zkratky na iPhonu podle postupu níže. V simulátoru je ověřené spuštění při ukončené i běžící aplikaci.
 7. Výpadek sítě během stahování vlajek na reálném zařízení.
 8. Běh na iOS 17: v Xcode je jen simulátor 27.2, kompatibilitu hlídá kompilátor.
 

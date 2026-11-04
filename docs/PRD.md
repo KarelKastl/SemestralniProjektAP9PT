@@ -34,7 +34,7 @@ Foundation Models, české překlady hlavních měst, iPad, Mac, účty, online 
 | --- | --- | --- | --- | --- |
 | A1 | Spustím aplikaci s prázdnou databází → vidím průběh stahování a pak domovskou obrazovku | `testA01_firstLaunchDownloadsData` | ✅ | – |
 | A2 | Spustím bez sítě s prázdnou databází → vidím českou chybu, „Zkusit znovu“ a můžu pokračovat s přibalenými daty | `testA02_offlineShowsErrorAndFallback` | ✅ | – |
-| A3 | Odehraju hru → ukončím aplikaci → spustím bez sítě → odehraju další hru a vidím vlajky i historii a atlas | `testA03_restartKeepsDataOffline` | ✅ | – |
+| A3 | Odehraju hru → ukončím aplikaci → spustím bez sítě → odehraju další hru a vidím vlajky i historii a atlas | `testA03_restartKeepsDataOffline` | ✅ | ✅ |
 | A4 | Hraju režim Vlajka → po odpovědi vidím správně/špatně, zvýrazněnou správnou odpověď a Další, ukazatel otázek 1/10 až 10/10 | `testA04_flagModeFullGame` | ✅ | – |
 | A5 | Nastavím 6 možností → všechna tlačítka jsou na iPhonu 12 mini vidět bez scrollu | `testA05_sixOptionsFitWithoutScrolling` | ✅ | – |
 | A6 | Hraju Hlavní město → vidím zemi a volím z měst | `testA06_capitalMode` | ✅ | – |
