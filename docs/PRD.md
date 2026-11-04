@@ -44,7 +44,7 @@ Foundation Models, české překlady hlavních měst, iPad, Mac, účty, online 
 | A10 | Dohraju hru → vidím výsledek → hra je v historii → smažu ji swipem | `testA10_resultAndHistoryDelete` | ✅ | – |
 | A11 | Otevřu prázdnou historii a prázdný atlas → vidím vysvětlující prázdný stav | `testA11_emptyStates` | ✅ | – |
 | A12 | Objevím země → v atlasu je hledám bez diakritiky, filtruji region a vidím „Objeveno x / 193“ | `testA12_atlasSearchAndFilter` | ✅ | – |
-| A13 | Otevřu zemi v atlasu → vidím vlajku, údaje, statistiku a mapu | `testA13_atlasDetail` | ✅ | – |
+| A13 | Otevřu zemi v atlasu → vidím vlajku, údaje, statistiku a mapu | `testA13_atlasDetail` | ✅ | ✅ |
 | A14 | Aktualizuji data → vidím počty aktualizovaných a přidaných a objevené země zůstanou | `testA14_refreshKeepsProgress` | ✅ | – |
 
 Bonusy B1, B2 a B3 jsou hotové. Testy `testB1`, `testB2`, `testB3`. Sloupec *Ověřil člověk* vyplňte po ruční kontrole podle `docs/VERIFICATION.md`.
