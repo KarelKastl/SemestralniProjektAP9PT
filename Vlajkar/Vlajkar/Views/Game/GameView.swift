@@ -29,7 +29,7 @@ struct GameView: View {
         }
         .navigationBarBackButtonHidden()
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(engine.config.mode.title)
+        .navigationTitle(engine.config.isDaily ? "Denní výzva" : engine.config.mode.title)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button("Ukončit") { isConfirmingExit = true }

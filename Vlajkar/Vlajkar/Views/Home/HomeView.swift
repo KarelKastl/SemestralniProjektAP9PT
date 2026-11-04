@@ -8,9 +8,22 @@ struct HomeView: View {
     @AppStorage(GameSettingsKey.optionCount.rawValue) private var optionCount = 4
     @AppStorage(GameSettingsKey.usesTimer.rawValue) private var usesTimer = false
     @AppStorage(GameSettingsKey.unMembersOnly.rawValue) private var unMembersOnly = true
+    @Query(filter: #Predicate<GameResult> { $0.isDaily }) private var dailyResults: [GameResult]
 
     var body: some View {
         Form {
+            Section("Dnes") {
+                // B1: jedna hra denně, po dohrání zůstane jen výsledek.
+                if let result = DailyChallenge.result(in: dailyResults, on: .now) {
+                    Label("Denní výzva splněna: \(result.score) / \(result.total)", systemImage: "checkmark.seal.fill")
+                        .accessibilityIdentifier("home.daily.done")
+                } else {
+                    NavigationLink(value: DailyChallenge.config) {
+                        Label("Denní výzva", systemImage: "calendar")
+                    }
+                    .accessibilityIdentifier("home.daily")
+                }
+            }
             Section("Režim hry") {
                 ForEach(GameMode.allCases) { mode in
                     NavigationLink(value: config(for: mode)) {
@@ -43,9 +56,6 @@ struct HomeView: View {
             }
         }
         .navigationTitle("Vlajkař")
-        .navigationDestination(for: GameConfig.self) { config in
-            GameScreen(config: config)
-        }
     }
 
     private func config(for mode: GameMode) -> GameConfig {

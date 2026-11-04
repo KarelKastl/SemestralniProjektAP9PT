@@ -121,4 +121,48 @@ final class RobustnessUITests: XCTestCase {
         XCTAssertTrue(rows.firstMatch.waitForExistence(timeout: 5))
         XCTAssertEqual(rows.count, 2)
     }
+
+    @MainActor
+    func testB1_dailyChallengeOncePerDay() throws {
+        let app = launch()
+        app.buttons["home.daily"].tap()
+        for _ in 1 ... 10 {
+            XCTAssertTrue(app.buttons["game.option.0"].waitForExistence(timeout: 10))
+            app.buttons["game.option.0"].tap()
+            app.buttons["game.next"].tap()
+        }
+        XCTAssertTrue(app.buttons["result.done"].waitForExistence(timeout: 5))
+        app.buttons["result.done"].tap()
+
+        XCTAssertTrue(app.descendants(matching: .any)["home.daily.done"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["home.daily"].exists)
+        app.tabBars.buttons["Historie"].tap()
+        let row = app.descendants(matching: .any).matching(NSPredicate(format: "label BEGINSWITH 'Denní výzva'"))
+        XCTAssertTrue(row.firstMatch.waitForExistence(timeout: 5))
+    }
+
+    @MainActor
+    func testB2_chartAppearsAfterTwoGames() throws {
+        let app = launch()
+        app.buttons["home.start.population"].tap()
+        for round in 1 ... 2 {
+            for _ in 1 ... 10 {
+                XCTAssertTrue(app.buttons["game.option.0"].waitForExistence(timeout: 10))
+                app.buttons["game.option.0"].tap()
+                app.buttons["game.next"].tap()
+            }
+            app.buttons[round == 1 ? "result.again" : "result.done"].tap()
+        }
+        app.tabBars.buttons["Historie"].tap()
+        let header = app.staticTexts["Úspěšnost v čase"]
+        XCTAssertTrue(header.waitForExistence(timeout: 5))
+    }
+
+    @MainActor
+    func testB3_intentRequestOpensDailyGame() throws {
+        let app = launch(["-intent.playDaily", "YES"])
+
+        XCTAssertTrue(app.navigationBars["Denní výzva"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["game.option.0"].waitForExistence(timeout: 5))
+    }
 }

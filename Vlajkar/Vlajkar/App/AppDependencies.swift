@@ -28,7 +28,9 @@ final class AppDependencies {
     func makeEngine(config: GameConfig, context: ModelContext) -> GameEngine {
         let countries = (try? context.fetch(FetchDescriptor<Country>()))?.map { QuizCountry($0) } ?? []
         let seconds = options.timerSeconds ?? GameEngine.secondsPerQuestion
-        if let seed = options.seed {
+        // B1: denní výzva má semínko z data, nikdy náhodné.
+        let daySeed = config.isDaily ? DailyChallenge.seed(for: .now) : nil
+        if let seed = daySeed ?? options.seed {
             var generator = SeededGenerator(seed: seed)
             return GameEngine(config: config, countries: countries, generator: &generator, secondsLimit: seconds)
         }

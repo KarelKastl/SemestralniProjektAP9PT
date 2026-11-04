@@ -6,6 +6,10 @@ struct HistoryView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \GameResult.date, order: .reverse) private var results: [GameResult]
 
+    private var points: [SuccessPoint] {
+        HistoryStats.successPoints(in: results)
+    }
+
     var body: some View {
         Group {
             if results.isEmpty {
@@ -16,6 +20,11 @@ struct HistoryView: View {
                 )
             } else {
                 List {
+                    if points.count >= 2 {
+                        Section("Úspěšnost v čase") {
+                            SuccessChartView(points: points)
+                        }
+                    }
                     Section("Nejlepší skóre") {
                         ForEach(HistoryStats.bestScores(in: results), id: \.mode) { best in
                             LabeledContent(best.mode.title, value: String(best.score))
@@ -48,7 +57,7 @@ private struct HistoryRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             HStack {
-                Text(result.gameMode.title)
+                Text(result.isDaily ? "Denní výzva" : result.gameMode.title)
                     .font(.headline)
                 Spacer()
                 Text("\(result.score) / \(result.total)")
