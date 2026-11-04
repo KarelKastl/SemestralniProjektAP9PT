@@ -155,6 +155,8 @@ final class CountrySync {
                 }
                 done += 1
                 phase = .downloadingFlags(done: done, total: total)
+                // Průběžné ukládání: ukončení aplikace nezahodí už stažené vlajky.
+                if done.isMultiple(of: 25) { try context.save() }
                 addNext()
             }
         }

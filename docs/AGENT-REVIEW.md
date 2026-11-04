@@ -56,3 +56,17 @@ Doplňováno po každé featuře podle kontrolního seznamu z promptu.
 - Ikona → ✅ `Assets.xcassets/AppIcon.appiconset`
 - Výkon: žádné dekódování v `body` → ✅ `Utilities/FlagImageCache.swift`
 - Nalezeno: nefunkční poslední tlačítko s velkým písmem, nepřeložitelný Release build, ztlumené zodpovězené možnosti.
+
+## Fáze 9 – Rozbij to
+| Scénář | Výsledek | Důkaz |
+| --- | --- | --- |
+| Dvojité ťuknutí na odpověď | ✅ počítá se jednou | `testR1`, `doubleTapCountsOnce` |
+| Dvojité ťuknutí na Další | ✅ posun o jednu | `doubleTapOnNextAdvancesOnce` |
+| Odchod ze hry uprostřed | ✅ hra se neuloží | `testR2` |
+| Ztráta sítě při vlajkách | ✅ hotové vlajky zůstanou, opakování doplní zbytek | `failedFlagIsDownloadedOnRetry` |
+| Oceánie se 6 možnostmi | ✅ | `testR3` |
+| Největší písmo | ✅ scrolluje a jde dohrát | `testR4`, `testF8_largeTextFullGame` |
+| Tmavý režim | ✅ | `docs/screenshots/*-tmavy.png` |
+| Otočení | ✅ aplikace zůstane na výšku | `testR5` |
+| Aktualizace bez sítě | ✅ chyba, data zůstanou | `testR6` |
+| Hrát znovu | ✅ každá hra se uloží jednou | `testR7` |

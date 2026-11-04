@@ -37,7 +37,8 @@ struct GameView: View {
         }
         .confirmationDialog("Ukončit hru?", isPresented: $isConfirmingExit, titleVisibility: .visible) {
             Button("Ukončit hru", role: .destructive) { dismiss() }
-            Button("Pokračovat", role: .cancel) {}
+            // Bez role `.cancel`, ta by na iPhonu tlačítko skryla.
+            Button("Pokračovat") {}
         } message: {
             Text("Rozehraná hra se neuloží.")
         }

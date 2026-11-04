@@ -1,5 +1,13 @@
 # Průběh
 
+### Fáze 9 – Rozbij to · 4. 11. 2026
+Hotovo: sedm scénářů v `Vlajkar/VlajkarUITests/RobustnessUITests.swift` a dva nové unit testy.
+Výsledek: dvojité ťuknutí, odchod ze hry, Oceánie se 6 možnostmi, největší písmo, otočení, aktualizace bez sítě a opakovaná hra fungují.
+Nalezeno a opraveno: tlačítko „Pokračovat“ se v dialogu na iOS 27 nezobrazovalo; vlajky se při stahování ukládaly až na konci, teď po 25; stará hláška o aktualizaci zůstávala v Nastavení.
+Build: OK · Unit testy: 54/54 · UI testy: 22/22
+Čeká na ruční ověření: skutečná ztráta sítě během stahování vlajek na iPhonu.
+Další krok: bonusy B1, B2, B3.
+
 ### Fáze 8 – F8 Doladění pro iPhone 12 mini · 4. 11. 2026
 Hotovo: ikona `Assets.xcassets/AppIcon.appiconset`, velké písmo ve `Views/Game/GameView.swift`, VoiceOver popisky, dekódování vlajek mimo `body`, screenshoty všech obrazovek ve třech variantách, Release build a build pro iPhone.
 NEsplněno / odchylky: launch screen je automaticky generovaný systémem (ADR-013). Screenshoty pro F4 až F7 vznikly až v této fázi.

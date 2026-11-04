@@ -28,6 +28,7 @@ struct SettingsView: View {
             }
         }
         .navigationTitle("Nastavení")
+        .onDisappear { dependencies.sync.reset() }
     }
 
     @ViewBuilder

@@ -205,6 +205,26 @@ struct GameEngineTests {
         #expect(engine.state == .waiting)
     }
 
+    @Test func doubleTapOnNextAdvancesOnce() throws {
+        let engine = makeEngine()
+        engine.answer(try correctID(engine))
+        engine.next()
+        engine.next()
+
+        #expect(engine.currentIndex == 1)
+    }
+
+    @Test func answerAfterFinishIsIgnored() throws {
+        let engine = makeEngine()
+        for _ in 0 ..< 10 {
+            engine.answer(try correctID(engine))
+            engine.next()
+        }
+
+        #expect(engine.answer("C0") == nil)
+        #expect(engine.score == 10)
+    }
+
     @Test func nextRequiresAnswer() {
         let engine = makeEngine()
         engine.next()
