@@ -35,3 +35,6 @@
 
 ## ADR-012 · 4. 11. 2026 · Ukazatel atlasu počítá členy OSN
 **Kontext:** v atlasu jsou i země mimo OSN, ukazatel má tvar „Objeveno 57 / 193“. **Rozhodnutí:** čitatel i jmenovatel počítají jen členy OSN, seznam ukazuje všechny objevené země. **Kdo rozhodl:** agent sám.
+
+## ADR-013 · 4. 11. 2026 · Generovaný launch screen a anglické subregiony
+**Kontext:** F8 zmiňuje launch screen a API vrací subregiony anglicky. **Rozhodnutí:** launch screen generuje systém a respektuje světlý i tmavý režim. Subregiony se zobrazují tak, jak přijdou z API, stejně jako hlavní města, nevymýšlíme překlady. **Kdo rozhodl:** agent sám.

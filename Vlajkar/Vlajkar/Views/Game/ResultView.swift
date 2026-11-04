@@ -55,6 +55,7 @@ struct ResultView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         ResultView(engine: PreviewData.engine, onPlayAgain: {})
@@ -62,3 +63,4 @@ struct ResultView: View {
     .environment(PreviewData.dependencies)
     .modelContainer(PreviewData.dependencies.container)
 }
+#endif

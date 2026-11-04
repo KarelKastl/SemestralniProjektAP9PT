@@ -67,6 +67,7 @@ private struct HistoryRow: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         HistoryView()
@@ -74,3 +75,4 @@ private struct HistoryRow: View {
     .environment(PreviewData.dependencies)
     .modelContainer(PreviewData.dependencies.container)
 }
+#endif

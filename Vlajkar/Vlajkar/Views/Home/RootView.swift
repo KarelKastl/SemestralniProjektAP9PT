@@ -19,8 +19,10 @@ struct RootView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     RootView()
         .environment(PreviewData.dependencies)
         .modelContainer(PreviewData.dependencies.container)
 }
+#endif

@@ -10,10 +10,19 @@ struct GameView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var isConfirmingExit = false
 
+    private static let nextButtonID = "game.next"
+
     var body: some View {
         Group {
             if dynamicTypeSize.isAccessibilitySize {
-                ScrollView { content }
+                // Velké písmo smí scrollovat, po odpovědi se Další samo posune na obrazovku.
+                ScrollViewReader { proxy in
+                    ScrollView { content }
+                        .onChange(of: engine.state) { _, state in
+                            guard state.isAnswered else { return }
+                            withAnimation { proxy.scrollTo(Self.nextButtonID, anchor: .bottom) }
+                        }
+                }
             } else {
                 content
             }
@@ -51,17 +60,21 @@ struct GameView: View {
                 OptionsGrid(question: question, state: engine.state) { option in
                     record(engine.answer(option.id))
                 }
-                Button(engine.isLastQuestion ? "Zobrazit výsledek" : "Další") {
+                Button {
                     engine.next()
+                } label: {
+                    // Šířka je v popisku, delší text tak s velkým písmem nemění zásah tlačítka.
+                    Text(engine.isLastQuestion ? "Zobrazit výsledek" : "Další")
+                        .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
-                .frame(maxWidth: .infinity)
                 // Tlačítko zůstává v rozložení, aby možnosti po odpovědi neposkočily.
                 .opacity(engine.state.isAnswered ? 1 : 0)
                 .disabled(!engine.state.isAnswered)
                 .accessibilityHidden(!engine.state.isAnswered)
                 .accessibilityIdentifier("game.next")
+                .id(Self.nextButtonID)
             }
         }
         .padding(16)
@@ -87,25 +100,49 @@ private struct GameHeader: View {
     let engine: GameEngine
 
     var body: some View {
-        HStack {
-            Text("Otázka \(engine.questionNumber)/\(engine.total)")
-                .accessibilityIdentifier("game.progress")
-            Spacer()
-            if engine.config.usesTimer {
-                Label(timerText, systemImage: "timer")
-                    .foregroundStyle(engine.remainingSeconds <= 5 ? .red : .primary)
-                    .monospacedDigit()
-                    .accessibilityIdentifier("game.timer")
+        // Velké písmo se s časovačem nevejde na jeden řádek, ukazatel pak přejde na dva.
+        ViewThatFits(in: .horizontal) {
+            HStack {
+                progress
                 Spacer()
+                timer
+                score
             }
+            VStack(alignment: .leading, spacing: 2) {
+                progress
+                HStack {
+                    timer
+                    Spacer()
+                    score
+                }
+            }
+        }
+        .font(.subheadline.weight(.medium))
+        .lineLimit(1)
+    }
+
+    private var progress: some View {
+        Text("Otázka \(engine.questionNumber)/\(engine.total)")
+            .accessibilityIdentifier("game.progress")
+    }
+
+    @ViewBuilder
+    private var timer: some View {
+        if engine.config.usesTimer {
+            Label(timerText, systemImage: "timer")
+                .foregroundStyle(engine.remainingSeconds <= 5 ? .red : .primary)
+                .monospacedDigit()
+                .accessibilityIdentifier("game.timer")
+        }
+    }
+
+    private var score: some View {
+        HStack {
             Text("Skóre \(engine.score)")
                 .accessibilityIdentifier("game.score")
             Text("Série \(engine.streak)")
                 .accessibilityIdentifier("game.streak")
         }
-        .font(.subheadline.weight(.medium))
-        .lineLimit(1)
-        .minimumScaleFactor(0.6)
     }
 
     private var timerText: String {
@@ -216,6 +253,23 @@ private struct OptionButton: View {
         return isSelected ? "Špatná odpověď" : ""
     }
 
+    @ViewBuilder
+    private var symbol: some View {
+        if let resultSymbol {
+            Image(systemName: resultSymbol)
+                .foregroundStyle(isCorrectOption ? .green : .red)
+                .accessibilityHidden(true)
+        }
+    }
+
+    private var title: some View {
+        Text(option.title)
+            .font(.headline)
+            .multilineTextAlignment(.center)
+            .lineLimit(3)
+            .minimumScaleFactor(0.7)
+    }
+
     var body: some View {
         Button(action: action) {
             VStack(spacing: 4) {
@@ -224,17 +278,15 @@ private struct OptionButton: View {
                         .frame(maxWidth: 120, maxHeight: 64)
                         .accessibilityHidden(true)
                 }
-                HStack(spacing: 6) {
-                    if let resultSymbol {
-                        Image(systemName: resultSymbol)
-                            .foregroundStyle(isCorrectOption ? .green : .red)
-                            .accessibilityHidden(true)
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: 6) {
+                        symbol
+                        title.fixedSize(horizontal: true, vertical: false)
                     }
-                    Text(option.title)
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(3)
-                        .minimumScaleFactor(0.7)
+                    VStack(spacing: 2) {
+                        symbol
+                        title
+                    }
                 }
                 // F4: po odpovědi ukáže obě čísla.
                 if question.mode == .population, state.isAnswered {
@@ -264,6 +316,7 @@ private struct OptionButtonStyle: ButtonStyle {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         GameView(engine: PreviewData.engine)
@@ -271,3 +324,4 @@ private struct OptionButtonStyle: ButtonStyle {
     .environment(PreviewData.dependencies)
     .modelContainer(PreviewData.dependencies.container)
 }
+#endif

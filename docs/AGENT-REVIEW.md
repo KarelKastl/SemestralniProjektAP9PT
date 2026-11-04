@@ -49,3 +49,10 @@ Doplňováno po každé featuře podle kontrolního seznamu z promptu.
 - Upsert podle `code`, nikdy nemaže → ✅ `CountrySync.upsert`, test `upsertKeepsPlayerProgressAndFlag`, A14
 - Počty aktualizovaných a přidaných → ✅ `Views/Settings/SettingsView.swift`
 - Predikce: souběh dvou aktualizací hlídá `phase.isRunning`.
+
+## F8
+- 375 bodů, tmavý režim, velké písmo → ✅ `docs/screenshots/*-svetly.png`, `*-tmavy.png`, `*-velke.png`
+- VoiceOver: vlajka neprozradí zemi → ✅ `QuestionPrompt`, hlasový naslech čeká na člověka
+- Ikona → ✅ `Assets.xcassets/AppIcon.appiconset`
+- Výkon: žádné dekódování v `body` → ✅ `Utilities/FlagImageCache.swift`
+- Nalezeno: nefunkční poslední tlačítko s velkým písmem, nepřeložitelný Release build, ztlumené zodpovězené možnosti.

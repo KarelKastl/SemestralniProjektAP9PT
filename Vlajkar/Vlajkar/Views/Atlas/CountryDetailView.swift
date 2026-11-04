@@ -55,6 +55,7 @@ struct CountryDetailView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         CountryDetailView(country: Country(
@@ -74,3 +75,4 @@ struct CountryDetailView: View {
     .environment(PreviewData.dependencies)
     .modelContainer(PreviewData.dependencies.container)
 }
+#endif

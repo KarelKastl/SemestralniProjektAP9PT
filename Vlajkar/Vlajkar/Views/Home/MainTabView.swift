@@ -28,8 +28,10 @@ struct MainTabView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     MainTabView()
         .environment(PreviewData.dependencies)
         .modelContainer(PreviewData.dependencies.container)
 }
+#endif

@@ -26,12 +26,15 @@ struct HomeView: View {
                     }
                 }
                 .accessibilityIdentifier("home.region")
-                Picker("Počet možností", selection: $optionCount) {
-                    Text("4").tag(4)
-                    Text("6").tag(6)
+                LabeledContent("Počet možností") {
+                    Picker("Počet možností", selection: $optionCount) {
+                        Text("4").tag(4)
+                        Text("6").tag(6)
+                    }
+                    .pickerStyle(.segmented)
+                    .labelsHidden()
+                    .fixedSize()
                 }
-                .pickerStyle(.segmented)
-                .accessibilityLabel("Počet možností")
                 .accessibilityIdentifier("home.optionCount")
                 Toggle("Časovač 15 sekund", isOn: $usesTimer)
                     .accessibilityIdentifier("home.timer")
@@ -56,6 +59,7 @@ struct HomeView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         HomeView()
@@ -63,3 +67,4 @@ struct HomeView: View {
     .environment(PreviewData.dependencies)
     .modelContainer(PreviewData.dependencies.container)
 }
+#endif

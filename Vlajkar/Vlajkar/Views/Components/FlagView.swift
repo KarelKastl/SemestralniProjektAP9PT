@@ -33,8 +33,10 @@ struct FlagView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     FlagView(code: "CZE")
         .environment(PreviewData.dependencies)
         .modelContainer(PreviewData.dependencies.container)
 }
+#endif

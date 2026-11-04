@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 
 #if DEBUG
-/// Ukázková data pro `#Preview` (pravidlo 2).
+/// Ukázková data pro náhledy (pravidlo 2).
 enum PreviewData {
     static let dependencies = AppDependencies(options: LaunchOptions(usesFixtures: true))
     static let engine: GameEngine = {

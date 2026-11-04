@@ -245,4 +245,30 @@ final class VlajkarUITests: XCTestCase {
         openTab(app, "Atlas")
         XCTAssertEqual(app.staticTexts["atlas.counter"].label, "Objeveno 1 / 193")
     }
+
+    @MainActor
+    func testF8_largeTextFullGame() throws {
+        let app = launchFixtures(["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityL"])
+        app.buttons["home.start.flag"].tap()
+        for number in 1 ... 10 {
+            XCTAssertTrue(app.buttons["game.option.1"].waitForExistence(timeout: 10))
+            XCTAssertEqual(app.staticTexts["game.progress"].label, "Otázka \(number)/10")
+            app.buttons["game.option.1"].tap()
+            let next = app.buttons["game.next"]
+            XCTAssertTrue(next.waitForHittable(timeout: 5), "Další není dostupné u otázky \(number)")
+            next.tap()
+        }
+        XCTAssertTrue(app.staticTexts["result.score"].waitForExistence(timeout: 5))
+    }
+}
+
+private extension XCUIElement {
+    func waitForHittable(timeout: TimeInterval) -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if exists, isHittable { return true }
+            usleep(100_000)
+        }
+        return false
+    }
 }

@@ -88,6 +88,7 @@ private struct AtlasRow: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         AtlasView()
@@ -95,3 +96,4 @@ private struct AtlasRow: View {
     .environment(PreviewData.dependencies)
     .modelContainer(PreviewData.dependencies.container)
 }
+#endif

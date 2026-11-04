@@ -45,6 +45,7 @@ struct GameScreen: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         GameScreen(config: GameConfig(mode: .flag))
@@ -52,3 +53,4 @@ struct GameScreen: View {
     .environment(PreviewData.dependencies)
     .modelContainer(PreviewData.dependencies.container)
 }
+#endif

@@ -1,5 +1,15 @@
 # Průběh
 
+### Fáze 8 – F8 Doladění pro iPhone 12 mini · 4. 11. 2026
+Hotovo: ikona `Assets.xcassets/AppIcon.appiconset`, velké písmo ve `Views/Game/GameView.swift`, VoiceOver popisky, dekódování vlajek mimo `body`, screenshoty všech obrazovek ve třech variantách, Release build a build pro iPhone.
+NEsplněno / odchylky: launch screen je automaticky generovaný systémem (ADR-013). Screenshoty pro F4 až F7 vznikly až v této fázi.
+Build: OK, jediné varování `appintentsmetadataprocessor` zmizí s B3 · Unit testy: 52/52 · UI testy: 15/15
+Nalezeno testem: s velkým písmem nešlo klepnout na „Zobrazit výsledek“. Tlačítko s dlouhým textem bez šířky v popisku nedostalo klepnutí. Šířka je teď v popisku, hlídá to `testF8_largeTextFullGame`.
+Nalezeno buildem: Release build nešel přeložit, protože `#Preview` používaly data dostupná jen v DEBUG. Náhledy jsou v `#if DEBUG`.
+Ověřeno: `uiTest` přepínače v binárce Release nejsou (`strings` našel 0 výskytů).
+Čeká na ruční ověření: VoiceOver naslech, skutečné dlaždice mapy, chování na iPhonu.
+Další krok: Fáze 9.
+
 ### Fáze 7 – F7 Obnovení dat · 4. 11. 2026
 Hotovo: `Views/Settings/SettingsView.swift` a upsert v `Persistence/CountrySync.swift`. Zachová `discoveredAt`, `correctCount`, `wrongCount` i uložené vlajky a doplní chybějící.
 Build: OK · Unit testy: 52/52 · UI testy: 14/14, test A14
