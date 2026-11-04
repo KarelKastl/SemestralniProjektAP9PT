@@ -70,3 +70,17 @@ Doplňováno po každé featuře podle kontrolního seznamu z promptu.
 | Otočení | ✅ aplikace zůstane na výšku | `testR5` |
 | Aktualizace bez sítě | ✅ chyba, data zůstanou | `testR6` |
 | Hrát znovu | ✅ každá hra se uloží jednou | `testR7` |
+
+## Bonusy
+- B1 stejné otázky pro den, jedna hra denně → ✅ `Game/DailyChallenge.swift`, `testB1`
+- B2 Swift Charts z `GameResult` → ✅ `Views/History/SuccessChartView.swift`, `testB2`
+- B3 App Intent otevře hru → ✅ `Game/PlayDailyChallengeIntent.swift`, `testB3`, spuštění ze Zkratek čeká na člověka
+
+## Celkové hodnocení agenta
+Dobře: testy odhalily skutečné chyby, které by člověk snadno přehlédl. Špatně: první verze F3 obsahovala kód z F4 a Release build se nezkoušel průběžně.
+
+## Predikce: kde bych na místě studenta hledal chybu
+1. Klíč v aplikaci je čitelný, u reálného produktu by patřil na server.
+2. Filtr OSN a ukazatel atlasu počítají různé množiny zemí.
+3. Rekord se počítá ze skóre, ne z procent, region s méně otázkami tak nemůže rekord překonat.
+4. Denní výzva závisí na datech v telefonu, po aktualizaci dat se může otázka změnit.

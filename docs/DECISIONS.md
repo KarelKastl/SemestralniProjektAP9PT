@@ -38,3 +38,6 @@
 
 ## ADR-013 · 4. 11. 2026 · Generovaný launch screen a anglické subregiony
 **Kontext:** F8 zmiňuje launch screen a API vrací subregiony anglicky. **Rozhodnutí:** launch screen generuje systém a respektuje světlý i tmavý režim. Subregiony se zobrazují tak, jak přijdou z API, stejně jako hlavní města, nevymýšlíme překlady. **Kdo rozhodl:** agent sám.
+
+## ADR-014 · 4. 11. 2026 · Denní výzva a graf
+**Kontext:** B1 a B2 nechávají detaily otevřené. **Rozhodnutí:** denní výzva je vždy režim Vlajka, celý svět, členové OSN, 4 možnosti, bez časovače a se semínkem ve tvaru RRRRMMDD. Graf ukazuje posledních 30 her v pořadí, ne na časové ose, a objeví se od dvou her. Zkratka nespustí už odehranou výzvu. **Kdo rozhodl:** agent sám.

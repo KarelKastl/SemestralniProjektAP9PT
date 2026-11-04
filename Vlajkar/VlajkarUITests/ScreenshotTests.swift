@@ -67,8 +67,8 @@ final class ScreenshotTests: XCTestCase {
         try playGame(app, mode: "population")
 
         openTab(app, "Historie")
-        usleep(600_000)
-        try save("F5-historie")
+        usleep(800_000)
+        try save("B2-historie-graf")
 
         openTab(app, "Atlas")
         XCTAssertTrue(app.staticTexts["atlas.counter"].waitForExistence(timeout: 5))

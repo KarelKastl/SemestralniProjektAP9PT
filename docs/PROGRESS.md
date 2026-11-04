@@ -1,5 +1,19 @@
 # Průběh
 
+### Finále – předávka · 4. 11. 2026
+Hotovo: všechny F1–F8, B1–B3, A1–A14 zelené, dokumentace a předávka.
+NEsplněno / odchylky: `Secrets.plist` místo `Secrets.xcconfig` (ADR-002), screenshoty F4–F7 vznikly ve F8.
+Build: OK bez varování · Unit testy: 62/62 · UI testy: 25/25
+Důkazy: `docs/VERIFICATION.md`, `docs/screenshots/`, data z reálného iPhonu 250/193/250.
+Čeká na ruční ověření: seznam ve `docs/VERIFICATION.md`.
+Další krok: ruční kontrola, push v aplikaci GitHub, výměna API klíče po dokončení.
+
+### Fáze 10 – Bonusy · 4. 11. 2026
+Hotovo: B1 `Game/DailyChallenge.swift`, B2 `Views/History/SuccessChartView.swift`, B3 `Game/PlayDailyChallengeIntent.swift`, přepínání záložek a cesta hry v `Views/Home/MainTabView.swift`.
+Rozhodl jsem sám: ADR-014.
+Build: OK, varování App Intents zmizelo · Unit testy: 62/62 · UI testy: 25/25
+Nalezeno ve screenshotu: časová osa slila hry z jednoho dne, osa X je teď pořadí her.
+
 ### Fáze 9 – Rozbij to · 4. 11. 2026
 Hotovo: sedm scénářů v `Vlajkar/VlajkarUITests/RobustnessUITests.swift` a dva nové unit testy.
 Výsledek: dvojité ťuknutí, odchod ze hry, Oceánie se 6 možnostmi, největší písmo, otočení, aktualizace bez sítě a opakovaná hra fungují.
@@ -80,4 +94,4 @@ Důkazy: `./test.sh all`
 Další krok: F1 Stažení dat.
 
 ## Otevřené problémy
-Zatím žádné.
+Žádné blokující. Ruční ověření je ve `docs/VERIFICATION.md`.

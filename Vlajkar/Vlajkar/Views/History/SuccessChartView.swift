@@ -6,17 +6,25 @@ import SwiftUI
 struct SuccessChartView: View {
     let points: [SuccessPoint]
 
+    /// Popisky osy X: první a poslední hra, stejné datum se neopakuje.
+    private var axisPoints: [SuccessPoint] {
+        guard let first = points.first, let last = points.last else { return [] }
+        let isSameDay = Calendar.current.isDate(first.date, inSameDayAs: last.date)
+        return isSameDay ? [last] : [first, last]
+    }
+
     var body: some View {
+        // Osa X je pořadí her: hry z jednoho dne by se na časové ose slily do jednoho místa.
         Chart(points) { point in
-            LineMark(x: .value("Datum", point.date), y: .value("Úspěšnost", point.percent))
-                .interpolationMethod(.monotone)
+            LineMark(x: .value("Hra", point.id), y: .value("Úspěšnost", point.percent))
                 .lineStyle(StrokeStyle(lineWidth: 2))
-            PointMark(x: .value("Datum", point.date), y: .value("Úspěšnost", point.percent))
+            PointMark(x: .value("Hra", point.id), y: .value("Úspěšnost", point.percent))
                 .symbolSize(40)
                 .accessibilityLabel(Formatting.date(point.date))
                 .accessibilityValue("\(point.percent) procent")
         }
         .chartYScale(domain: 0 ... 100)
+        .chartXScale(domain: 0 ... max(points.count - 1, 1))
         .chartYAxis {
             AxisMarks(values: [0, 50, 100]) { value in
                 AxisGridLine().foregroundStyle(.quaternary)
@@ -26,10 +34,10 @@ struct SuccessChartView: View {
             }
         }
         .chartXAxis {
-            AxisMarks(values: .automatic(desiredCount: 3)) { value in
-                AxisValueLabel {
-                    if let date = value.as(Date.self) {
-                        Text(date.formatted(Date.FormatStyle().day().month(.defaultDigits).locale(Formatting.czech)))
+            AxisMarks(values: axisPoints.map(\.id)) { value in
+                AxisValueLabel(anchor: .topTrailing, collisionResolution: .disabled) {
+                    if let id = value.as(Int.self), let point = points.first(where: { $0.id == id }) {
+                        Text(point.date.formatted(Date.FormatStyle().day().month(.defaultDigits).locale(Formatting.czech)))
                     }
                 }
             }
