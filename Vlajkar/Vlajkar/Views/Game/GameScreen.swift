@@ -19,7 +19,7 @@ struct GameScreen: View {
                         description: Text(emptyMessage)
                     )
                 } else if engine.isFinished {
-                    ResultView(engine: engine)
+                    ResultView(engine: engine, onPlayAgain: startNewGame)
                 } else {
                     GameView(engine: engine)
                 }
@@ -27,12 +27,15 @@ struct GameScreen: View {
                 ProgressView()
             }
         }
+        .toolbar(.hidden, for: .tabBar)
         .task {
             // Hra vznikne jen jednou, návrat na obrazovku ji nerestartuje.
-            if engine == nil {
-                engine = dependencies.makeEngine(config: config, context: modelContext)
-            }
+            if engine == nil { startNewGame() }
         }
+    }
+
+    private func startNewGame() {
+        engine = dependencies.makeEngine(config: config, context: modelContext)
     }
 
     private var emptyMessage: String {

@@ -18,4 +18,28 @@ enum ProgressRecorder {
         }
         try context.save()
     }
+
+    /// F5: uloží výsledek a vrátí, jestli jde o nový rekord režimu.
+    @discardableResult
+    static func save(
+        _ summary: GameSummary,
+        in context: ModelContext,
+        at date: Date = .now
+    ) throws -> Bool {
+        let mode = summary.config.mode.rawValue
+        let previous = try context.fetch(FetchDescriptor<GameResult>(predicate: #Predicate { $0.mode == mode }))
+        let isRecord = summary.score > (previous.map(\.score).max() ?? 0)
+        context.insert(GameResult(
+            date: date,
+            mode: summary.config.mode,
+            region: summary.config.region.title,
+            score: summary.score,
+            total: summary.total,
+            bestStreak: summary.bestStreak,
+            duration: summary.duration,
+            isDaily: summary.config.isDaily
+        ))
+        try context.save()
+        return isRecord
+    }
 }

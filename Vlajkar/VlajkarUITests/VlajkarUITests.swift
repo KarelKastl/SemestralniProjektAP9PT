@@ -21,6 +21,22 @@ final class VlajkarUITests: XCTestCase {
     }
 
     @MainActor
+    private func playWholeGame(_ app: XCUIApplication, mode: String = "flag") {
+        app.buttons["home.start.\(mode)"].tap()
+        for _ in 1 ... 10 {
+            XCTAssertTrue(app.buttons["game.option.0"].waitForExistence(timeout: 10))
+            answerFirstOption(app)
+            app.buttons["game.next"].tap()
+        }
+        XCTAssertTrue(app.staticTexts["result.score"].waitForExistence(timeout: 5))
+    }
+
+    @MainActor
+    private func openTab(_ app: XCUIApplication, _ title: String) {
+        app.tabBars.buttons[title].tap()
+    }
+
+    @MainActor
     private func answerFirstOption(_ app: XCUIApplication) {
         app.buttons["game.option.0"].tap()
         XCTAssertTrue(app.buttons["game.next"].waitForExistence(timeout: 5))
@@ -136,5 +152,21 @@ final class VlajkarUITests: XCTestCase {
         XCTAssertTrue(next.isHittable)
         XCTAssertEqual(app.staticTexts["game.score"].label, "Skóre 0")
         XCTAssertEqual(app.buttons.matching(NSPredicate(format: "value == 'Správná odpověď'")).count, 1)
+    }
+
+    @MainActor
+    func testA10_resultAndHistoryDelete() throws {
+        let app = launchFixtures()
+        playWholeGame(app)
+        let streak = app.descendants(matching: .any).matching(NSPredicate(format: "label BEGINSWITH 'Nejlepší série'"))
+        XCTAssertTrue(streak.firstMatch.exists)
+        app.buttons["result.done"].tap()
+
+        openTab(app, "Historie")
+        let row = app.descendants(matching: .any).matching(identifier: "history.row").firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 5))
+        row.swipeLeft()
+        app.buttons["Smazat"].firstMatch.tap()
+        XCTAssertTrue(app.staticTexts["Zatím žádná hra"].waitForExistence(timeout: 5))
     }
 }

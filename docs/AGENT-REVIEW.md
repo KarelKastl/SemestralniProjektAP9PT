@@ -26,3 +26,15 @@ Doplňováno po každé featuře podle kontrolního seznamu z promptu.
 - VoiceOver popisek vlajky neprozradí zemi → ✅ `QuestionPrompt`
 - Předání environmentu a `#Preview` → ✅ `PreviewData`
 - Predikce: dlouhé názvy zemí ve 2×3 mřížce.
+
+## F4
+- Hlavní město a Víc/méně, česká čísla → ✅ `Views/Game/GameView.swift`, `Utilities/Formatting.swift`
+- `Form`, region, 4/6, časovač, OSN, `@AppStorage` → ✅ `Views/Home/HomeView.swift`
+- Vypršení časovače = špatně → ✅ `GameEngine.tick`, test A9
+- Predikce: časovač a přechod na další otázku, `.task(id:)` ho ruší.
+
+## F5
+- Výsledek, nový rekord, uložení jednou → ✅ `Views/Game/ResultView.swift`
+- `@Query`, nejnovější nahoře, mazání objektu → ✅ `Views/History/HistoryView.swift`
+- Prázdná historie → ✅ `ContentUnavailableView`
+- Predikce: dvojité uložení při návratu na výsledek, hlídá `savedEngineID`.

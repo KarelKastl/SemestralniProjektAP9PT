@@ -6,6 +6,7 @@ ARGS=(-project Vlajkar.xcodeproj -scheme Vlajkar -destination "platform=iOS Simu
 case "${1:-all}" in
   unit) ARGS+=(-only-testing:VlajkarTests) ;;
   ui) ARGS+=(-only-testing:VlajkarUITests) ;;
+  test*) ARGS+=(-only-testing:VlajkarUITests/VlajkarUITests/$1) ;;
 esac
 rm -rf ../build/result.xcresult
 xcodebuild "${ARGS[@]}" -resultBundlePath ../build/result.xcresult test 2>&1 | grep -E 'warning:|error:|^Test Case .*(failed)|Test case .*failed|\*\* (TEST|BUILD)|Executed [0-9]+ test|Test run with|✘|failed -' | grep -v 'appintentsmetadataprocessor' | tail -${2:-40}

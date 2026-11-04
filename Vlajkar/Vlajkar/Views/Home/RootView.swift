@@ -13,9 +13,7 @@ struct RootView: View {
             if countries.isEmpty || isSettingUp {
                 SetupView(isSettingUp: $isSettingUp)
             } else {
-                NavigationStack {
-                    HomeView()
-                }
+                MainTabView()
             }
         }
     }

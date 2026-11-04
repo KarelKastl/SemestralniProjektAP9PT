@@ -75,6 +75,10 @@ final class GameEngine {
         return AnswerOutcome(countryCode: question.subject.code, isCorrect: false)
     }
 
+    var summary: GameSummary {
+        GameSummary(config: config, score: score, total: total, bestStreak: bestStreak, duration: duration)
+    }
+
     func next() {
         guard state.isAnswered, !isFinished else { return }
         if isLastQuestion {
@@ -86,6 +90,15 @@ final class GameEngine {
             remainingSeconds = secondsLimit
         }
     }
+}
+
+/// Souhrn dokončené hry pro uložení (F5).
+nonisolated struct GameSummary: Equatable, Sendable {
+    var config: GameConfig
+    var score: Int
+    var total: Int
+    var bestStreak: Int
+    var duration: TimeInterval
 }
 
 nonisolated struct AnswerOutcome: Equatable, Sendable {
