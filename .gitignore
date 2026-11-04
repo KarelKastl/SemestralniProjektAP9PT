@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+# Xcode
+xcuserdata/
+*.xcuserstate
+build/
+DerivedData/
+# Tajné údaje (API klíč se sem nikdy necommituje)
+Vlajkar/Vlajkar/Secrets.plist
