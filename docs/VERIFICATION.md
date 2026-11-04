@@ -29,7 +29,7 @@ Datum 4. 11. 2026. Simulátor iPhone 12 mini, iOS 27.2, Xcode 27.2.
 | A14 | `testA14_refreshKeepsProgress` | Ťukněte na Aktualizovat data zemí a zkontrolujte atlas. | ✅ | |
 
 ## Restart test
-`testA03_restartKeepsDataOffline` hraje na trvalém úložišti, aplikaci ukončí a druhé spuštění je bez fixtures a s klientem bez sítě. Historie, atlas i vlajky přišly z databáze. Ukončení přes `simctl terminate` a `simctl launch` proběhlo při ladění F1 na skutečných datech, data po dalším spuštění zůstala.
+`testA03_restartKeepsDataOffline` hraje na trvalém úložišti, aplikaci ukončí a druhé spuštění je bez fixtures a s klientem bez sítě. Historie, atlas i vlajky přišly z databáze. Ruční kontrola přes `xcrun simctl terminate` a `xcrun simctl launch` na úložišti se skutečnými daty: před ukončením 250 zemí, 250 vlajek, 36 her, 5 objevených zemí, po dalším spuštění stejné hodnoty. Screenshot `docs/screenshots/F5-po-restartu-svetly.png`.
 
 ## Test bez sítě
 `testA02`, `testA03` a `testR6` používají `-uiTestOffline`. Skutečný režim Letadlo čeká na ruční ověření.
