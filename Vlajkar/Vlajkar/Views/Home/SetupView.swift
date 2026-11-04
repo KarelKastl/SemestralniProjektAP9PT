@@ -72,6 +72,6 @@ struct SetupView: View {
 
 #Preview {
     SetupView(isSettingUp: .constant(true))
-        .environment(AppDependencies(options: LaunchOptions(usesFixtures: true, isOffline: true)))
+        .environment(AppDependencies(options: LaunchOptions(usesFixtures: false, isOffline: true)))
         .modelContainer(for: [Country.self, GameResult.self], inMemory: true)
 }

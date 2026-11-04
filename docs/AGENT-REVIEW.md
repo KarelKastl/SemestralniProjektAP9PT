@@ -18,3 +18,11 @@ Doplňováno po každé featuře podle kontrolního seznamu z promptu.
 - Dvojité ťuknutí → ✅ test `doubleTapCountsOnce`
 - Nalezeno v review: stejně pojmenovaná hlavní města by vytvořila dvě stejné možnosti, opraveno a otestováno.
 - Predikce: vypršení časovače během přechodu na další otázku.
+
+## F3
+- Vlajka a 4/6 možností, barvy, haptika, Další, ukazatel → ✅ `Views/Game/GameView.swift`
+- Žádné dekódování v `body` → ✅ `Utilities/FlagImageCache.swift`
+- `@Observable`, stav v enginu, hra vytvořena jednou → ✅ `Views/Game/GameScreen.swift`
+- VoiceOver popisek vlajky neprozradí zemi → ✅ `QuestionPrompt`
+- Předání environmentu a `#Preview` → ✅ `PreviewData`
+- Predikce: dlouhé názvy zemí ve 2×3 mřížce.

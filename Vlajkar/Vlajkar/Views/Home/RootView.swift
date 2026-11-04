@@ -23,6 +23,6 @@ struct RootView: View {
 
 #Preview {
     RootView()
-        .environment(AppDependencies(options: LaunchOptions(usesFixtures: true)))
-        .modelContainer(for: [Country.self, GameResult.self], inMemory: true)
+        .environment(PreviewData.dependencies)
+        .modelContainer(PreviewData.dependencies.container)
 }

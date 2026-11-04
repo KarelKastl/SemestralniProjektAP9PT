@@ -29,6 +29,14 @@ nonisolated enum RegionFilter: String, CaseIterable, Codable, Hashable, Identifi
     }
 }
 
+/// Klíče `@AppStorage` pro nastavení hry (F4).
+nonisolated enum GameSettingsKey: String, CaseIterable {
+    case region = "game.region"
+    case optionCount = "game.optionCount"
+    case usesTimer = "game.usesTimer"
+    case unMembersOnly = "game.unMembersOnly"
+}
+
 /// Parametry jedné hry.
 nonisolated struct GameConfig: Hashable, Sendable {
     var mode: GameMode

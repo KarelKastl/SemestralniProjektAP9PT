@@ -1,5 +1,13 @@
 # Průběh
 
+### Fáze 3 – F3 Režim Vlajka · 4. 11. 2026
+Hotovo: `Views/Game/GameScreen.swift`, `Views/Game/GameView.swift`, `Views/Components/FlagView.swift`, `Utilities/FlagImageCache.swift`, `Utilities/Formatting.swift`, zatím základní `Views/Game/ResultView.swift`.
+NEsplněno / odchylky: žádné. Přidáno navíc: potvrzení ukončení hry, ikony správně/špatně kvůli barvoslepým (ADR-010).
+Build: OK · Unit testy: 43/43 · UI testy: 3/3 (A1, A2, A4)
+Důkazy: `docs/screenshots/F3-*.png` se skutečnými vlajkami, světlý, tmavý, velké písmo.
+Nalezeno ve screenshotech: výchozí styl tlumil zodpovězené možnosti, nahrazen vlastním stylem.
+Další krok: F4.
+
 ### Fáze 2 – F2 GameEngine · 4. 11. 2026
 Hotovo: `Game/GameEngine.swift`, `Game/QuestionGenerator.swift`, `Game/QuizModels.swift`, `Game/GameConfig.swift`, `Game/SeededGenerator.swift`, `Persistence/ProgressRecorder.swift`.
 NEsplněno / odchylky: žádné. Přidáno navíc: `ProgressRecorder` zapisuje objevené země hned po odpovědi.

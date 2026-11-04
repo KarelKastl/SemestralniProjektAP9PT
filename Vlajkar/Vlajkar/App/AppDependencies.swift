@@ -8,9 +8,13 @@ final class AppDependencies {
     let options: LaunchOptions
     let container: ModelContainer
     let sync: CountrySync
+    let flagCache = FlagImageCache()
 
     init(options: LaunchOptions = .current) {
         self.options = options
+        if options.resetsDefaults {
+            GameSettingsKey.allCases.forEach { UserDefaults.standard.removeObject(forKey: $0.rawValue) }
+        }
         container = Self.makeContainer(options: options)
         sync = CountrySync(client: Self.makeClient(options: options))
         #if DEBUG
@@ -18,6 +22,18 @@ final class AppDependencies {
             try? FixtureLoader.loadIfNeeded(into: container.mainContext)
         }
         #endif
+    }
+
+    /// F2: vytvoří hru z dat v databázi. V testech je náhoda pevná (`-uiTestSeed`).
+    func makeEngine(config: GameConfig, context: ModelContext) -> GameEngine {
+        let countries = (try? context.fetch(FetchDescriptor<Country>()))?.map { QuizCountry($0) } ?? []
+        let seconds = options.timerSeconds ?? GameEngine.secondsPerQuestion
+        if let seed = options.seed {
+            var generator = SeededGenerator(seed: seed)
+            return GameEngine(config: config, countries: countries, generator: &generator, secondsLimit: seconds)
+        }
+        var generator = SystemRandomNumberGenerator()
+        return GameEngine(config: config, countries: countries, generator: &generator, secondsLimit: seconds)
     }
 
     private static func makeClient(options: LaunchOptions) -> any CountriesFetching {

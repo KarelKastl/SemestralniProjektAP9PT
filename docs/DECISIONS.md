@@ -26,3 +26,9 @@
 
 ## ADR-009 · 4. 11. 2026 · Hodnotový `QuizCountry` a méně než 10 otázek
 **Kontext:** `GameEngine` nemá záviset na SwiftData a region může mít méně než 10 vhodných zemí. **Rozhodnutí:** engine dostává `QuizCountry`. Pokud je zemí méně, hra má méně otázek a země se neopakují. Ve Víc/méně se dvojice se stejným počtem obyvatel přeskakuje a v postupu se počítá lidnatější země. **Kdo rozhodl:** agent sám.
+
+## ADR-010 · 4. 11. 2026 · Ukončení hry a ikony u výsledku
+**Kontext:** odchod ze hry uprostřed a barvy nestačí všem uživatelům. **Rozhodnutí:** tlačítko Ukončit s potvrzením, rozehraná hra se neuloží, ale objevené země zůstanou. Výsledek odpovědi má i ikonu. **Kdo rozhodl:** agent sám.
+
+## ADR-011 · 4. 11. 2026 · Skutečná data pro screenshoty
+**Kontext:** testovací data mají vygenerované vlajky. **Rozhodnutí:** `ScreenshotTests` používá samostatné úložiště naplněné jednou ze skutečného API, další běhy API nevolají. Běží jen přes `screenshots.sh`, jinak se přeskočí. **Kdo rozhodl:** agent sám.
