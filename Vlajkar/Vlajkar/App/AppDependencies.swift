@@ -7,10 +7,25 @@ import SwiftData
 final class AppDependencies {
     let options: LaunchOptions
     let container: ModelContainer
+    let sync: CountrySync
 
     init(options: LaunchOptions = .current) {
         self.options = options
         container = Self.makeContainer(options: options)
+        sync = CountrySync(client: Self.makeClient(options: options))
+        #if DEBUG
+        if options.usesFixtures {
+            try? FixtureLoader.loadIfNeeded(into: container.mainContext)
+        }
+        #endif
+    }
+
+    private static func makeClient(options: LaunchOptions) -> any CountriesFetching {
+        #if DEBUG
+        if options.isOffline { return OfflineCountriesClient() }
+        if options.stubsAPI { return StubCountriesClient() }
+        #endif
+        return CountriesClient(apiKey: Secrets.restCountriesAPIKey)
     }
 
     private static func makeContainer(options: LaunchOptions) -> ModelContainer {

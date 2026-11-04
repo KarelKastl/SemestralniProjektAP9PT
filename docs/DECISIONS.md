@@ -17,3 +17,9 @@
 
 ## ADR-006 · 4. 11. 2026 · Spouštěcí přepínače jen v DEBUG
 **Kontext:** UI testy potřebují pevná data a pevnou náhodu. **Rozhodnutí:** `LaunchOptions.current` čte argumenty jen v DEBUG: `-uiTestFixtures`, `-uiTestOffline`, `-uiTestSeed`, `-uiTestStore`, `-uiTestReset`, `-uiTestTimer`, `-uiTestStubAPI`. Poslední čtyři jsou navíc proti zadání, potřebuje je restart test, test časovače a test stahování. **Kdo rozhodl:** zadání a agent.
+
+## ADR-007 · 4. 11. 2026 · Záloha na tlačítko
+**Kontext:** zadání chce při chybě hlášku a „Zkusit znovu“ a zároveň zálohu. **Rozhodnutí:** chyba ukáže „Zkusit znovu“ i „Pokračovat s přibalenými daty“. Bez vlajek je režim Vlajka nedostupný, dokud je nedoplní F7. **Kdo rozhodl:** agent sám.
+
+## ADR-008 · 4. 11. 2026 · Chybějící vlajky po částečném selhání
+**Kontext:** výpadek během stahování vlajek. **Rozhodnutí:** hotové vlajky se uloží, opakování stáhne jen chybějící. **Kdo rozhodl:** agent sám.

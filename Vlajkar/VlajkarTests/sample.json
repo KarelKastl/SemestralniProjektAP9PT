@@ -1,0 +1,226 @@
+[
+  {
+    "names": {
+      "common": "Antarctica",
+      "official": "Antarctica",
+      "translations": {
+        "ces": {
+          "common": "Antarktida",
+          "official": "Antarktida"
+        }
+      }
+    },
+    "codes": {
+      "alpha_2": "AQ",
+      "alpha_3": "ATA"
+    },
+    "capitals": [],
+    "flag": {
+      "url_png": "https://flags.restcountries.com/v5/w640/aq.png"
+    },
+    "region": "Antarctic",
+    "subregion": "",
+    "coordinates": {
+      "lat": -90,
+      "lng": 0
+    },
+    "memberships": {
+      "un": false
+    },
+    "population": 1300
+  },
+  {
+    "names": {
+      "common": "Bolivia",
+      "official": "Plurinational State of Bolivia",
+      "translations": {
+        "ces": {
+          "common": "Bolívie",
+          "official": "Mnohonárodnostní stát Bolívie"
+        }
+      }
+    },
+    "codes": {
+      "alpha_2": "BO",
+      "alpha_3": "BOL"
+    },
+    "capitals": [
+      {
+        "attributes": {
+          "administrative": false,
+          "constitutional": true,
+          "executive": false,
+          "judicial": false,
+          "legislative": false,
+          "primary": false
+        },
+        "coordinates": {
+          "lat": -19.04,
+          "lng": -65.26
+        },
+        "name": "Sucre"
+      },
+      {
+        "attributes": {
+          "administrative": true,
+          "constitutional": false,
+          "executive": false,
+          "judicial": false,
+          "legislative": false,
+          "primary": false
+        },
+        "coordinates": {
+          "lat": -16.5,
+          "lng": -68.15
+        },
+        "name": "La Paz"
+      }
+    ],
+    "flag": {
+      "url_png": "https://flags.restcountries.com/v5/w640/bo.png"
+    },
+    "region": "Americas",
+    "subregion": "South America",
+    "coordinates": {
+      "lat": -17,
+      "lng": -65
+    },
+    "memberships": {
+      "un": true
+    },
+    "population": 11365333
+  },
+  {
+    "names": {
+      "common": "Czechia",
+      "official": "Czech Republic",
+      "translations": {
+        "ces": {
+          "common": "Česko",
+          "official": "Česká republika"
+        }
+      }
+    },
+    "codes": {
+      "alpha_2": "CZ",
+      "alpha_3": "CZE"
+    },
+    "capitals": [
+      {
+        "attributes": {
+          "administrative": false,
+          "constitutional": false,
+          "executive": false,
+          "judicial": false,
+          "legislative": false,
+          "primary": true
+        },
+        "coordinates": {
+          "lat": 50.08,
+          "lng": 14.47
+        },
+        "name": "Prague"
+      }
+    ],
+    "flag": {
+      "url_png": "https://flags.restcountries.com/v5/w640/cz.png"
+    },
+    "region": "Europe",
+    "subregion": "Central Europe",
+    "coordinates": {
+      "lat": 49.75,
+      "lng": 15.5
+    },
+    "memberships": {
+      "un": true
+    },
+    "population": 10903655
+  },
+  {
+    "names": {
+      "common": "Japan",
+      "official": "Japan",
+      "translations": {
+        "ces": {
+          "common": "Japonsko",
+          "official": "Japonsko"
+        }
+      }
+    },
+    "codes": {
+      "alpha_2": "JP",
+      "alpha_3": "JPN"
+    },
+    "capitals": [
+      {
+        "attributes": {
+          "administrative": false,
+          "constitutional": false,
+          "executive": false,
+          "judicial": false,
+          "legislative": false,
+          "primary": true
+        },
+        "coordinates": {
+          "lat": 35.68,
+          "lng": 139.75
+        },
+        "name": "Tokyo"
+      }
+    ],
+    "flag": {
+      "url_png": "https://flags.restcountries.com/v5/w640/jp.png"
+    },
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "coordinates": {
+      "lat": 36,
+      "lng": 138
+    },
+    "memberships": {
+      "un": true
+    },
+    "population": 122650000
+  },
+  {
+    "names": {
+      "common": "Abkhazia",
+      "official": "Republic of Abkhazia",
+      "translations": {}
+    },
+    "codes": {
+      "alpha_2": "",
+      "alpha_3": ""
+    },
+    "capitals": [
+      {
+        "attributes": {
+          "administrative": false,
+          "constitutional": false,
+          "executive": false,
+          "judicial": false,
+          "legislative": false,
+          "primary": true
+        },
+        "coordinates": {
+          "lat": 43.0033,
+          "lng": 41.0153
+        },
+        "name": "Sukhumi"
+      }
+    ],
+    "flag": {
+      "url_png": ""
+    },
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "coordinates": {
+      "lat": 43,
+      "lng": 41
+    },
+    "memberships": {
+      "un": false
+    },
+    "population": 244236
+  }
+]
