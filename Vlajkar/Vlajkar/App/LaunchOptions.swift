@@ -10,6 +10,7 @@ nonisolated struct LaunchOptions: Sendable {
     var timerSeconds: Int?
     var stubsAPI = false
     var resetsDefaults = false
+    var discoveredCodes: [String] = []
 
     static let current: LaunchOptions = {
         #if DEBUG
@@ -30,6 +31,7 @@ nonisolated struct LaunchOptions: Sendable {
         options.resetsStore = arguments.contains("-uiTestReset")
         options.stubsAPI = arguments.contains("-uiTestStubAPI")
         options.resetsDefaults = arguments.contains("-uiTestResetDefaults")
+        options.discoveredCodes = value(after: "-uiTestDiscover")?.split(separator: ",").map(String.init) ?? []
         options.seed = value(after: "-uiTestSeed").flatMap(UInt64.init)
         options.storeName = value(after: "-uiTestStore")
         options.timerSeconds = value(after: "-uiTestTimer").flatMap(Int.init)

@@ -169,4 +169,80 @@ final class VlajkarUITests: XCTestCase {
         app.buttons["Smazat"].firstMatch.tap()
         XCTAssertTrue(app.staticTexts["Zatím žádná hra"].waitForExistence(timeout: 5))
     }
+
+    @MainActor
+    func testA03_restartKeepsDataOffline() throws {
+        var app = launch(["-uiTestFixtures", "-uiTestSeed", "7", "-uiTestResetDefaults", "-uiTestStore", "A03", "-uiTestReset"])
+        playWholeGame(app)
+        app.buttons["result.done"].tap()
+        app.terminate()
+
+        // Druhé spuštění je bez fixtures a bez sítě, všechno musí přijít z databáze.
+        app = launch(["-uiTestOffline", "-uiTestStore", "A03"])
+        XCTAssertTrue(app.navigationBars["Vlajkař"].waitForExistence(timeout: 10))
+        openTab(app, "Historie")
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "history.row").firstMatch.waitForExistence(timeout: 5))
+        openTab(app, "Atlas")
+        let counter = app.staticTexts["atlas.counter"]
+        XCTAssertTrue(counter.waitForExistence(timeout: 5))
+        XCTAssertFalse(counter.label.hasPrefix("Objeveno 0 "))
+        openTab(app, "Hra")
+        playWholeGame(app)
+    }
+
+    @MainActor
+    func testA11_emptyStates() throws {
+        let app = launchFixtures()
+        openTab(app, "Historie")
+        XCTAssertTrue(app.staticTexts["Zatím žádná hra"].waitForExistence(timeout: 5))
+        openTab(app, "Atlas")
+        XCTAssertTrue(app.staticTexts["Atlas je zatím prázdný"].waitForExistence(timeout: 5))
+    }
+
+    @MainActor
+    func testA12_atlasSearchAndFilter() throws {
+        let app = launchFixtures(["-uiTestDiscover", "CZE,DEU,JPN"])
+        openTab(app, "Atlas")
+        XCTAssertEqual(app.staticTexts["atlas.counter"].label, "Objeveno 3 / 193")
+
+        let search = app.searchFields.firstMatch
+        XCTAssertTrue(search.waitForExistence(timeout: 5))
+        search.tap()
+        search.typeText("cesko")
+        XCTAssertTrue(app.buttons["atlas.row.CZE"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["atlas.row.DEU"].exists)
+        search.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: 5))
+
+        app.buttons["atlas.region"].tap()
+        app.buttons["Asie"].firstMatch.tap()
+        XCTAssertTrue(app.buttons["atlas.row.JPN"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["atlas.row.CZE"].exists)
+    }
+
+    @MainActor
+    func testA13_atlasDetail() throws {
+        let app = launchFixtures(["-uiTestDiscover", "CZE"])
+        openTab(app, "Atlas")
+        app.buttons["atlas.row.CZE"].tap()
+
+        XCTAssertTrue(app.navigationBars["Česko"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.descendants(matching: .any)["detail.flag"].exists)
+        let capital = app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS 'Prague'"))
+        XCTAssertTrue(capital.firstMatch.exists)
+        app.swipeUp()
+        XCTAssertTrue(app.descendants(matching: .any)["detail.map"].waitForExistence(timeout: 5))
+    }
+
+    @MainActor
+    func testA14_refreshKeepsProgress() throws {
+        let app = launchFixtures(["-uiTestStubAPI", "-uiTestDiscover", "AFG"])
+        openTab(app, "Nastavení")
+        app.buttons["settings.refresh"].tap()
+
+        let result = app.staticTexts["settings.result"]
+        XCTAssertTrue(result.waitForExistence(timeout: 30))
+        XCTAssertEqual(result.label, "Aktualizováno 60, přidáno 0")
+        openTab(app, "Atlas")
+        XCTAssertEqual(app.staticTexts["atlas.counter"].label, "Objeveno 1 / 193")
+    }
 }

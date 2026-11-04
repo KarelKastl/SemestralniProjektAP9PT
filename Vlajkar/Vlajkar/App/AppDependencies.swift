@@ -19,7 +19,7 @@ final class AppDependencies {
         sync = CountrySync(client: Self.makeClient(options: options))
         #if DEBUG
         if options.usesFixtures {
-            try? FixtureLoader.loadIfNeeded(into: container.mainContext)
+            try? FixtureLoader.loadIfNeeded(into: container.mainContext, discovered: options.discoveredCodes)
         }
         #endif
     }

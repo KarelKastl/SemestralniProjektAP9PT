@@ -1,5 +1,18 @@
 # Průběh
 
+### Fáze 7 – F7 Obnovení dat · 4. 11. 2026
+Hotovo: `Views/Settings/SettingsView.swift` a upsert v `Persistence/CountrySync.swift`. Zachová `discoveredAt`, `correctCount`, `wrongCount` i uložené vlajky a doplní chybějící.
+Build: OK · Unit testy: 52/52 · UI testy: 14/14, test A14
+Další krok: F8.
+
+### Fáze 6 – F6 Atlas · 4. 11. 2026
+Hotovo: `Views/Atlas/AtlasView.swift`, `Views/Atlas/CountryDetailView.swift`, `Game/AtlasFilter.swift`.
+Rozhodl jsem sám: ADR-012.
+Přidáno navíc: přepínač `-uiTestDiscover`.
+Nalezeno testem: `.searchable` se v iOS 27 samo nezobrazilo, nastaveno `displayMode: .always`.
+Build: OK · UI testy: A3, A11, A12, A13 zelené
+Další krok: F7.
+
 ### Fáze 5 – F5 Výsledek a historie · 4. 11. 2026
 Hotovo: `Views/Game/ResultView.swift`, `Persistence/ProgressRecorder.swift` (`save`), `Views/History/HistoryView.swift`, `Game/HistoryStats.swift`, `Views/Home/MainTabView.swift`.
 NEsplněno / odchylky: žádné.

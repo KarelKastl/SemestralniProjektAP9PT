@@ -56,3 +56,40 @@ struct ResultTests {
         #expect(Formatting.duration(5) == "0:05")
     }
 }
+
+/// F6: filtr atlasu.
+@MainActor
+struct AtlasFilterTests {
+    private func country(_ code: String, _ name: String, region: String = "Europe") -> Country {
+        Country(
+            code: code, nameCS: name, officialNameCS: name, capital: nil, region: region, subregion: nil,
+            population: 1, isUNMember: true, latitude: 0, longitude: 0, flagURL: ""
+        )
+    }
+
+    @Test func searchIgnoresDiacriticsAndCase() {
+        let countries = [country("CZE", "Česko"), country("DEU", "Německo")]
+
+        #expect(AtlasFilter.apply(countries, search: "cesko", region: .world).map(\.code) == ["CZE"])
+        #expect(AtlasFilter.apply(countries, search: "NĚMECKO", region: .world).map(\.code) == ["DEU"])
+        #expect(AtlasFilter.apply(countries, search: "  ", region: .world).count == 2)
+    }
+
+    @Test func filtersByRegion() {
+        let countries = [country("CZE", "Česko"), country("JPN", "Japonsko", region: "Asia")]
+
+        #expect(AtlasFilter.apply(countries, search: "", region: .asia).map(\.code) == ["JPN"])
+    }
+
+    @Test func sortsCzechAlphabetically() {
+        let countries = [country("ZMB", "Zambie"), country("CZE", "Česko"), country("CAN", "Kanada"), country("CHN", "Čína")]
+        let names = AtlasFilter.apply(countries, search: "", region: .world).map(\.nameCS)
+
+        #expect(names == ["Česko", "Čína", "Kanada", "Zambie"])
+    }
+
+    @Test func regionTitlesAreCzech() {
+        #expect(RegionFilter.title(forAPIRegion: "Antarctic") == "Antarktida")
+        #expect(RegionFilter.title(forAPIRegion: "Europe") == "Evropa")
+    }
+}

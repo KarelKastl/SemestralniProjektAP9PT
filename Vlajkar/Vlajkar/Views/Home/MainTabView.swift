@@ -14,6 +14,16 @@ struct MainTabView: View {
                 HistoryView()
             }
             .tabItem { Label("Historie", systemImage: "clock") }
+
+            NavigationStack {
+                AtlasView()
+            }
+            .tabItem { Label("Atlas", systemImage: "globe.europe.africa") }
+
+            NavigationStack {
+                SettingsView()
+            }
+            .tabItem { Label("Nastavení", systemImage: "gearshape") }
         }
     }
 }

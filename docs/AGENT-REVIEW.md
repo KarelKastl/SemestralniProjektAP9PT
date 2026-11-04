@@ -38,3 +38,14 @@ Doplňováno po každé featuře podle kontrolního seznamu z promptu.
 - `@Query`, nejnovější nahoře, mazání objektu → ✅ `Views/History/HistoryView.swift`
 - Prázdná historie → ✅ `ContentUnavailableView`
 - Predikce: dvojité uložení při návratu na výsledek, hlídá `savedEngineID`.
+
+## F6
+- `@Query`, hledání bez diakritiky, filtr, ukazatel → ✅ `Views/Atlas/AtlasView.swift`, `Game/AtlasFilter.swift`
+- Detail s `Map` a `Marker` → ✅ `Views/Atlas/CountryDetailView.swift`
+- `NavigationStack`, `NavigationLink(value:)`, `.navigationDestination(for:)` → ✅
+- Nalezeno v review: Antarktida má šířku -90, střed mapy je omezený na ±80.
+
+## F7
+- Upsert podle `code`, nikdy nemaže → ✅ `CountrySync.upsert`, test `upsertKeepsPlayerProgressAndFlag`, A14
+- Počty aktualizovaných a přidaných → ✅ `Views/Settings/SettingsView.swift`
+- Predikce: souběh dvou aktualizací hlídá `phase.isRunning`.

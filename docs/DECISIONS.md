@@ -32,3 +32,6 @@
 
 ## ADR-011 · 4. 11. 2026 · Skutečná data pro screenshoty
 **Kontext:** testovací data mají vygenerované vlajky. **Rozhodnutí:** `ScreenshotTests` používá samostatné úložiště naplněné jednou ze skutečného API, další běhy API nevolají. Běží jen přes `screenshots.sh`, jinak se přeskočí. **Kdo rozhodl:** agent sám.
+
+## ADR-012 · 4. 11. 2026 · Ukazatel atlasu počítá členy OSN
+**Kontext:** v atlasu jsou i země mimo OSN, ukazatel má tvar „Objeveno 57 / 193“. **Rozhodnutí:** čitatel i jmenovatel počítají jen členy OSN, seznam ukazuje všechny objevené země. **Kdo rozhodl:** agent sám.
