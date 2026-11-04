@@ -53,7 +53,7 @@ Doplňováno po každé featuře podle kontrolního seznamu z promptu.
 ## F8
 - 375 bodů, tmavý režim, velké písmo → ✅ `docs/screenshots/*-svetly.png`, `*-tmavy.png`, `*-velke.png`
 - VoiceOver: vlajka neprozradí zemi → ✅ `QuestionPrompt`, hlasový naslech čeká na člověka
-- Ikona → ✅ `Assets.xcassets/AppIcon.appiconset`
+- Ikona → ❌ původně černá, opraveno po předání, `Assets.xcassets/AppIcon.appiconset`
 - Výkon: žádné dekódování v `body` → ✅ `Utilities/FlagImageCache.swift`
 - Nalezeno: nefunkční poslední tlačítko s velkým písmem, nepřeložitelný Release build, ztlumené zodpovězené možnosti.
 
@@ -74,10 +74,12 @@ Doplňováno po každé featuře podle kontrolního seznamu z promptu.
 ## Bonusy
 - B1 stejné otázky pro den, jedna hra denně → ✅ `Game/DailyChallenge.swift`, `testB1`
 - B2 Swift Charts z `GameResult` → ✅ `Views/History/SuccessChartView.swift`, `testB2`
-- B3 App Intent otevře hru → ✅ `Game/PlayDailyChallengeIntent.swift`, `testB3`, spuštění ze Zkratek čeká na člověka
+- B3 App Intent otevře hru → ✅ `Game/PlayDailyChallengeIntent.swift`, `testB3`, spuštění ze Zkratek ověřené v simulátoru po opravě
 
 ## Celkové hodnocení agenta
 Dobře: testy odhalily skutečné chyby, které by člověk snadno přehlédl. Špatně: první verze F3 obsahovala kód z F4 a Release build se nezkoušel průběžně.
+
+Po předání: B3 a ikona byly označené jako hotové bez skutečného vyzkoušení. Zkratka nespustila hru a ikona byla černá. Obojí je opravené, poučení je dívat se na výsledek, ne jen na zelený test.
 
 ## Predikce: kde bych na místě studenta hledal chybu
 1. Klíč v aplikaci je čitelný, u reálného produktu by patřil na server.

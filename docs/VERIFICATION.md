@@ -3,7 +3,7 @@
 Datum 4. 11. 2026. Simulátor iPhone 12 mini, iOS 27.2, Xcode 27.2.
 
 ## Souhrn
-- `./test.sh all`: unit testy 62/62, UI testy 25/25, 3 screenshotové testy přeskočeny (běží přes `./screenshots.sh`), čas 8 min 52 s, `** TEST SUCCEEDED **`.
+- `./test.sh all`: unit testy 63/63, UI testy 25/25, 3 screenshotové testy přeskočeny (běží přes `./screenshots.sh`), čas 8 min 52 s, `** TEST SUCCEEDED **`.
 - Čistý Release build pro simulátor: bez chyb a varování.
 - Build pro iPhone: bez chyb a varování.
 - Přepínače `uiTest` v binárce Release nejsou, `strings` našel 0 výskytů.
@@ -43,11 +43,18 @@ Datum 4. 11. 2026. Simulátor iPhone 12 mini, iOS 27.2, Xcode 27.2.
 3. Velké písmo na iPhonu: Nastavení → Zpřístupnění → Velikost textu.
 4. Mapa: v simulátoru se při screenshotech nenačetly dlaždice, ověřte detail země se sítí. Bez sítě mapa dlaždice nemá, zbytek aplikace funguje.
 5. Haptika: odezva po odpovědi je cítit jen na zařízení.
-6. Zkratky: v aplikaci Zkratky spusťte „Zahraj denní výzvu“. Siri česky nemluví, hlasové spuštění ověřené není.
+6. Zkratky na iPhonu podle postupu níže. V simulátoru je ověřené spuštění při ukončené i běžící aplikaci.
 7. Výpadek sítě během stahování vlajek na reálném zařízení.
 8. Běh na iOS 17: v Xcode je jen simulátor 27.2, kompatibilitu hlídá kompilátor.
 
 Bezplatný podpis platí 7 dní, potom aplikaci znovu spusťte z Xcode.
+
+## Jak ověřit zkratku B3 na iPhonu
+1. Otevřete aplikaci Zkratky a ťukněte na +.
+2. Do hledání napište Vlajkař a vyberte „Zahraj denní výzvu“.
+3. Ťukněte na ▶ dole. Vlajkař se otevře rovnou v denní výzvě.
+
+Pokud jste dnešní výzvu už odehráli, zkratka otevře jen domovskou obrazovku. Pro nové spuštění smažte dnešní řádek „Denní výzva“ v Historii. Hlasové spuštění přes Siri ověřené není, na prezentaci použijte aplikaci Zkratky.
 
 ## Screenshoty
 `docs/screenshots/`, přípony `-svetly`, `-tmavy`, `-velke`.

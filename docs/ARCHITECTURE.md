@@ -77,4 +77,4 @@ stateDiagram-v2
 | Kde jsou přepínače testů? | `Vlajkar/Vlajkar/App/LaunchOptions.swift:15` |
 | Kde je semínko denní výzvy? | `Vlajkar/Vlajkar/Game/DailyChallenge.swift:8` |
 | Kde jsou data grafu? | `Vlajkar/Vlajkar/Game/HistoryStats.swift:6` |
-| Kde je App Intent? | `Vlajkar/Vlajkar/Game/PlayDailyChallengeIntent.swift:21` |
+| Kde je App Intent? | `Vlajkar/Vlajkar/Game/PlayDailyChallengeIntent.swift:24` |

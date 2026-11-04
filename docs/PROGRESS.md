@@ -1,5 +1,11 @@
 # Průběh
 
+### Oprava po předání · 4. 11. 2026
+Hotovo: ruční spuštění zkratky v aplikaci Zkratky odhalilo, že B3 aplikaci otevře, ale hru nespustí. `perform()` doběhl až po kontrole v `MainTabView`, opraveno upozorněním běžící aplikaci v `Game/PlayDailyChallengeIntent.swift`. Na domovské obrazovce se ukázala černá ikona, kterou F8 chybně označil za hotovou, ikona je vykreslená znovu.
+Build: OK · Unit testy: 63/63 · UI testy: 25/25
+Důkazy: v simulátoru spuštění ze Zkratek při ukončené i běžící aplikaci, stejné otázky v obou případech. `testB3` obchází skutečné spuštění, proto chybu nezachytil.
+Čeká na ruční ověření: zkratka a ikona na iPhonu.
+
 ### Finále – předávka · 4. 11. 2026
 Hotovo: všechny F1–F8, B1–B3, A1–A14 zelené, dokumentace a předávka.
 NEsplněno / odchylky: `Secrets.plist` místo `Secrets.xcconfig` (ADR-002), screenshoty F4–F7 vznikly ve F8.

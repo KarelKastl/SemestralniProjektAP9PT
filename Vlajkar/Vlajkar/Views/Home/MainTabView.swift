@@ -1,3 +1,4 @@
+import Combine
 import SwiftData
 import SwiftUI
 
@@ -44,6 +45,10 @@ struct MainTabView: View {
         .task { openRequestedDailyChallenge() }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { openRequestedDailyChallenge() }
+        }
+        // B3: spuštění ze Zkratek přijde často až po aktivaci scény, `task` by ho minul.
+        .onReceive(NotificationCenter.default.publisher(for: DailyChallengeRequest.notification)) { _ in
+            openRequestedDailyChallenge()
         }
     }
 

@@ -1,6 +1,6 @@
 # Předávka
 
-**Stav:** F1–F8 a B1–B3 hotové, kritéria A1–A14 mají zelené UI testy, unit testy 62/62, UI testy 25/25, build bez varování. Aplikace běží na iPhonu 12 mini se skutečnými daty: 250 zemí, 193 v OSN, 250 vlajek.
+**Stav:** F1–F8 a B1–B3 hotové, kritéria A1–A14 mají zelené UI testy, unit testy 63/63, UI testy 25/25, build bez varování. Aplikace běží na iPhonu 12 mini se skutečnými daty: 250 zemí, 193 v OSN, 250 vlajek.
 
 **Co není hotové:** ruční ověření (`docs/VERIFICATION.md`, sekce „Čeká na ruční ověření“) a sloupec *Ověřil člověk* v `docs/PRD.md`.
 

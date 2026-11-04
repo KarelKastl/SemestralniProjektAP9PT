@@ -80,6 +80,24 @@ struct SuccessPointsTests {
     }
 }
 
+/// Jednoduchá hodnota sdílená s pozorovatelem v testu.
+final class Mutex: @unchecked Sendable {
+    private let lock = NSLock()
+    private var stored: Bool
+
+    init(_ value: Bool) {
+        stored = value
+    }
+
+    var value: Bool {
+        lock.withLock { stored }
+    }
+
+    func set(_ value: Bool) {
+        lock.withLock { stored = value }
+    }
+}
+
 /// B3: akce pro Zkratky.
 struct DailyChallengeRequestTests {
     @Test func requestIsConsumedOnce() throws {
@@ -91,11 +109,29 @@ struct DailyChallengeRequestTests {
         #expect(!DailyChallengeRequest.consume(in: defaults))
     }
 
+    @Test func requestNotifiesRunningApp() async throws {
+        let defaults = try #require(UserDefaults(suiteName: "vlajkar.tests.\(UUID().uuidString)"))
+        let received = Mutex(false)
+        let token = NotificationCenter.default.addObserver(
+            forName: DailyChallengeRequest.notification, object: nil, queue: nil
+        ) { _ in received.set(true) }
+        defer { NotificationCenter.default.removeObserver(token) }
+
+        DailyChallengeRequest.make(in: defaults)
+
+        #expect(received.value)
+    }
+
+    // Běžící hostitelská aplikace požadavek hned spotřebuje, proto test sleduje upozornění.
     @Test func intentCreatesRequest() async throws {
-        UserDefaults.standard.removeObject(forKey: DailyChallengeRequest.key)
+        let received = Mutex(false)
+        let token = NotificationCenter.default.addObserver(
+            forName: DailyChallengeRequest.notification, object: nil, queue: nil
+        ) { _ in received.set(true) }
+        defer { NotificationCenter.default.removeObserver(token) }
 
         _ = try await PlayDailyChallengeIntent().perform()
 
-        #expect(DailyChallengeRequest.consume())
+        #expect(received.value)
     }
 }

@@ -4,9 +4,12 @@ import Foundation
 /// Požadavek zvenku: otevřít denní výzvu při příštím zobrazení aplikace (B3).
 nonisolated enum DailyChallengeRequest {
     static let key = "intent.playDaily"
+    static let notification = Notification.Name("vlajkar.playDaily")
 
+    /// Uloží požadavek a dá vědět běžící aplikaci. `perform()` může doběhnout až po zobrazení scény.
     static func make(in defaults: UserDefaults = .standard) {
         defaults.set(true, forKey: key)
+        NotificationCenter.default.post(name: notification, object: nil)
     }
 
     /// Vrátí požadavek jen jednou.

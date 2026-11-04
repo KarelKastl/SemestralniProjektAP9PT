@@ -1,12 +1,14 @@
 # Podklady k prezentaci (10 minut)
 
+Hotová prezentace: https://claude.ai/artifact/1r7p3FxKdhMvRqEKkJh9fK
+
 ## Osnova slajdů
 1. Vlajkař: co to je a pro koho.
 2. Ukázka aplikace: tři režimy, atlas, historie.
 3. Architektura: API → SwiftData → GameEngine → Views.
 4. Offline: vlajky jako `.externalStorage`.
 5. Co se změnilo: REST Countries v3.1 přestalo fungovat, přechod na v5.
-6. Testování: 62 unit testů, 25 UI testů, A1–A14.
+6. Testování: 63 unit testů, 25 UI testů, A1–A14.
 7. Chyby nalezené testy a screenshoty.
 8. Práce s agentem: co šlo dobře a co ne.
 9. Čísla projektu.
@@ -47,9 +49,11 @@
 | Tlačítko Pokračovat v dialogu chybělo | UI test | Odstraněna role `.cancel` |
 | Vlajky se ukládaly až na konci | Fáze Rozbij to | Ukládání po 25 |
 | Graf slil hry z jednoho dne | Screenshot | Osa podle pořadí her |
+| Zkratka otevřela aplikaci, ale ne hru | Ruční zkouška | Upozornění běžící aplikaci |
+| Ikona aplikace byla černá | Domovská obrazovka | Nové vykreslení ikony |
 
 ## Čísla projektu
-39 souborů Swiftu v aplikaci, 2 400 řádků aplikace, 1 400 řádků testů, 62 unit testů, 25 UI testů, 14 akceptačních kritérií, 14 rozhodnutí, 12 commitů.
+39 souborů Swiftu v aplikaci, 2 400 řádků aplikace, 1 400 řádků testů, 63 unit testů, 25 UI testů, 14 akceptačních kritérií, 14 rozhodnutí, 12 commitů.
 
 ## Připravené odpovědi
 1. **Kde je filtrování?** `Vlajkar/Vlajkar/Game/AtlasFilter.swift:9`.
