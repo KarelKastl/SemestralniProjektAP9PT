@@ -23,3 +23,6 @@
 
 ## ADR-008 · 4. 11. 2026 · Chybějící vlajky po částečném selhání
 **Kontext:** výpadek během stahování vlajek. **Rozhodnutí:** hotové vlajky se uloží, opakování stáhne jen chybějící. **Kdo rozhodl:** agent sám.
+
+## ADR-009 · 4. 11. 2026 · Hodnotový `QuizCountry` a méně než 10 otázek
+**Kontext:** `GameEngine` nemá záviset na SwiftData a region může mít méně než 10 vhodných zemí. **Rozhodnutí:** engine dostává `QuizCountry`. Pokud je zemí méně, hra má méně otázek a země se neopakují. Ve Víc/méně se dvojice se stejným počtem obyvatel přeskakuje a v postupu se počítá lidnatější země. **Kdo rozhodl:** agent sám.

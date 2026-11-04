@@ -1,5 +1,13 @@
 # Průběh
 
+### Fáze 2 – F2 GameEngine · 4. 11. 2026
+Hotovo: `Game/GameEngine.swift`, `Game/QuestionGenerator.swift`, `Game/QuizModels.swift`, `Game/GameConfig.swift`, `Game/SeededGenerator.swift`, `Persistence/ProgressRecorder.swift`.
+NEsplněno / odchylky: žádné. Přidáno navíc: `ProgressRecorder` zapisuje objevené země hned po odpovědi.
+Rozhodl jsem sám: ADR-009.
+Build: OK · Unit testy: 43/43 · UI testy: 2/2
+Důkazy: `GameEngineTests`, `QuestionGeneratorTests`, referenční vektor SplitMix64.
+Další krok: F3 Herní obrazovka.
+
 ### Fáze 1 – F1 Stažení dat · 4. 11. 2026
 Hotovo: `CountryDTO` a `CountriesPage` (`Vlajkar/Vlajkar/Models/CountryDTO.swift`), klient se stránkováním a chybami (`Networking/CountriesClient.swift`), upsert a vlajky po 6 (`Persistence/CountrySync.swift`), průběh, chyba a záloha (`Views/Home/SetupView.swift`, `Networking/BundledCountries.swift`).
 NEsplněno / odchylky: žádné. Přidáno navíc: tlačítko „Pokračovat s přibalenými daty“ (ADR-007).
